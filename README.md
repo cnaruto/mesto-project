@@ -7,7 +7,7 @@
 
 **Интро**
 
-Проект направленный на отработку создания pop-up окон, а также форм типа input.  Ссылка на проект - cnaruto.github.io/russian-travel/  ЗАМЕНИТЬ!!!
+Проект направленный на отработку создания pop-up окон, а также форм типа input.  Ссылка на проект - https://cnaruto.github.io/mesto-project/
 
 **fixed**
 
