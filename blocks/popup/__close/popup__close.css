@@ -1,4 +1,11 @@
 .popup__close {
+  background-image: url(../../../image/close-icon.svg);
+  background-color: rgba(255, 255, 255, 0);
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 20px;
+  border: 0;
+  padding: 20px;
   position: absolute;
   top: -36px;
   right: 0px;
@@ -7,11 +14,12 @@
 
 .popup__close:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
   .popup__close {
-    position: absolute;
+    background-size: 32px;
     top: -40px;
     right: -40px;
     max-width: 32px;

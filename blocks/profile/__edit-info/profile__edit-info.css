@@ -1,17 +1,24 @@
 .profile__edit-info {
   transform: translate(9px, -6px);
   max-width: 7.5px;
-  padding: 5.25px ;
+  padding: 8px;
   border: 1px solid #fff;
+  background-color: black;
+  background-image: url(../../../image/button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 7.5px;
 }
 .profile__edit-info:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
   .profile__edit-info {
     transform: translate(15px, -8px);
     max-width: 10px;
-    padding: 7px;
+    padding: 10px;
+    background-size: 10px;
   }
 }

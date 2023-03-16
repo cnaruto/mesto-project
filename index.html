@@ -5,7 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <!-- <link rel="stylesheet" href="./style.css"> -->
   <title>mesto-project</title>
 </head>
 <body class="page">
@@ -18,68 +17,75 @@
       <div class="profile__name">
         <div class="profile__container">
           <h1 class="profile__info">Жак-Ив Кусто</h1>
-          <img class="profile__edit-info" src="./image/button.png" alt="Редактировать имя">
+          <button class="profile__edit-info" type="submit"></button>
         </div>
         <p class="profile__subtitle">Исследователь океана</p>
       </div>
-      <img class="profile__button" src="./image/plus-button.png" alt="Добавить пост">
+      <button class="profile__button" type="submit"></button>
+
     </section>
     <section class="group">
       <ul class="group__list">
         <li class="post">
           <img class="post__img" src="./image/karach.jpg" alt="Фото поста">
           <div class="post__container">
-            <p class="post__text">Карачаево-Черкесия</p>
-            <img class="post__img-heart" src="./image/heart.png" alt="сердце">
+            <h2 class="post__text">Карачаево-Черкесия</h2>
+            <button class="post__img-heart" type="button"></button>
+            <!-- <img class="post__img-heart" src="./image/heart.png" alt="сердце"> -->
           </div>
         </li>
         <li class="post">
           <img class="post__img" src="./image/elbrus.png" alt="Фото поста">
           <div class="post__container">
-            <p class="post__text">Гора Эльбрус</p>
-            <img class="post__img-heart" src="./image/heart.png" alt="сердце">
+            <h2 class="post__text">Гора Эльбрус</h2>
+            <button class="post__img-heart" type="button"></button>
+            <!-- <img class="post__img-heart" src="./image/heart.png" alt="сердце"> -->
           </div>
         </li>
         <li class="post">
           <img class="post__img" src="./image/dombai.png" alt="Фото поста">
           <div class="post__container">
-            <p class="post__text">Домбай</p>
-            <img class="post__img-heart" src="./image/heart.png" alt="сердце">
+            <h2 class="post__text">Домбай</h2>
+            <button class="post__img-heart" type="button"></button>
+            <!-- <img class="post__img-heart" src="./image/heart.png" alt="сердце"> -->
           </div>
         </li>
         <li class="post">
           <img class="post__img" src="./image/karach.jpg" alt="Фото поста">
           <div class="post__container">
-            <p class="post__text">Карачаево-Черкесия</p>
-            <img class="post__img-heart" src="./image/heart.png" alt="сердце">
+            <h2 class="post__text">Карачаево-Черкесия</h2>
+            <button class="post__img-heart" type="button"></button>
+            <!-- <img class="post__img-heart" src="./image/heart.png" alt="сердце"> -->
           </div>
         </li>
         <li class="post">
           <img class="post__img" src="./image/karach.jpg" alt="Фото поста">
           <div class="post__container">
-            <p class="post__text">Гора Эльбрус</p>
-            <img class="post__img-heart" src="./image/heart.png" alt="сердце">
+            <h2 class="post__text">Гора Эльбрус</h2>
+            <button class="post__img-heart" type="button"></button>
+            <!-- <img class="post__img-heart" src="./image/heart.png" alt="сердце"> -->
           </div>
         </li>
         <li class="post">
           <img class="post__img" src="./image/karach.jpg" alt="Фото поста">
           <div class="post__container">
-            <p class="post__text">Домбай</p>
-            <img class="post__img-heart" src="./image/heart.png" alt="сердце">
+            <h2 class="post__text">Домбай</h2>
+            <button class="post__img-heart" type="button"></button>
+            <!-- <img class="post__img-heart" src="./image/heart.png" alt="сердце"> -->
           </div>
         </li>
       </ul>
     </section>
     <section class="popup popup_opened">
-      <form class="popup__container">
-        <img class="popup__close" src="./image/close-icon.png" alt="закрыть">
-        <p class="popup__title">Редактировать профиль</p>
+      <form class="popup__container" name="container">
+        <button class="popup__close" type="button"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__info">
-          <input class="popup__input" type="text" placeholder="Жак-Ив Кусто" required>
-          <input class="popup__input" type="text" placeholder="Исследователь океана" required>
+          <input class="popup__input" type="text" name="first" placeholder="Жак-Ив Кусто" required>
+          <input class="popup__input" type="text" name="second" placeholder="Исследователь океана" required>
         </fieldset>
         <fieldset class="popup__handlers">
-          <input class="popup__button" type="submit" value="Сохранить">
+          <button class="popup__button" type="submit">Сохранить</button>
         </fieldset>
       </form>
     </section>

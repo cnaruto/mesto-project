@@ -1,11 +1,18 @@
 .profile__button {
+  display: block;
   max-width: 16px;
   margin: 33px auto 0;
-  padding: 17px 120px 15px 135px;
+  padding: 33px 140px 15px 140px;
   border: 1px solid #fff;
+  background-image: url(../../../image/plus-button.svg);
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px;
 }
 .profile__button:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -13,7 +20,7 @@
     position: absolute;
     right: 0;
     max-width: 22px;
-    margin: 35px 0 0 0;
-    padding: 14px 64px;
+    padding: 23px 74px;
+    background-size: 22px;
   }
 }

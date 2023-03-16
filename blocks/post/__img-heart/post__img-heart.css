@@ -1,4 +1,19 @@
 .post__img-heart {
-  max-width: 23px;
+  background-color: white;
+  background-image: url(../../../image/heart.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  border: none;
+  padding: 23px;
   height: auto;
+}
+
+.post__img-heart:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.post__img-heart:active {
+  opacity: 1;
+  background-image: url(../../../image/heart-active.svg);
 }

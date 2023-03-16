@@ -2,15 +2,18 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 70px 0 0 0;
+  padding: 38px 0 0 0;
+  max-width: 880px;
 }
 
 @media screen and (min-width: 768px) {
   .profile {
     position: relative;
-    margin: 0 auto;
+    /* margin: 0 20px 0 20px; */
+    /* margin: 0 auto; */
+    margin: 0;
     flex-direction: row;
     align-items: flex-start;
-    padding: 77px 0 0 0;
+    /*padding: 77px 0 0 0;*/
   }
 }

@@ -1,9 +1,12 @@
 .profile__name {
   margin: 0 auto;
+  max-width: 282px;
 }
 
 @media screen and (min-width: 768px) {
   .profile__name {
+    max-width: 60%;
+    /* max-width: 600px; */
     margin: 0;
   }
 }
