@@ -17,12 +17,10 @@
   text-overflow: ellipsis;
   overflow: hidden;
   color: #000;
-}
-
-.popup__input::-webkit-input-placeholder {
   text-indent: 0px;
   transition: text-indent 0.5s ease;
 }
+
 .popup__input:focus::-webkit-input-placeholder {
   text-indent: 500px;
   transition: text-indent 0.5s ease;
