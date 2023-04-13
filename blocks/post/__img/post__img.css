@@ -1,6 +1,22 @@
 .post__img {
   padding: 0;
   margin: 0 auto;
-  width: 100%;
+  width: 282px;
+  height: 282px;
   border-radius: 5% 5% 0 0;
+}
+
+.post__img:hover {
+  cursor: pointer;
+}
+
+
+
+@media screen and (min-width: 768px) {
+  .post__close {
+    background-size: 32px;
+    top: -40px;
+    right: -40px;
+    max-width: 32px;
+  }
 }

@@ -1,0 +1,5 @@
+.post__click-opened {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}

@@ -18,6 +18,12 @@
 @import url(../blocks/group/group.css);
 @import url(../blocks/group/__list/group__list.css);
 @import url(../blocks/post/post.css);
+@import url(../blocks/post/__click/post__click.css);
+@import url(../blocks/post/__click-opened/post__click-opened.css);
+@import url(../blocks/post/__wrapper/post__wrapper.css);
+@import url(../blocks/post/__close/post__close.css);
+@import url(../blocks/post/__img-click/post__img-click.css);
+@import url(../blocks/post/__text-click/post__text-click.css);
 @import url(../blocks/post/__container/post__container.css);
 @import url(../blocks/post/__img-heart/post__img-heart.css);
 @import url(../blocks/post/__img/post__img.css);

@@ -17,3 +17,7 @@
   opacity: 1;
   background-image: url(../../../image/heart-active.svg);
 }
+
+.post__img-heart_active {
+  background-image: url(../../../image/heart-active.svg);
+}
