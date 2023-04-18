@@ -13,10 +13,12 @@ const groupList = document.querySelector('.group__list');
 const popupCloseAll = document.querySelectorAll('.popup__close');
 const postTemplate = document.querySelector('#post-template').content;
 
+const popupImgClick = popupImg.querySelector('.popup__img-click');
+const popupTextClick = popupImg.querySelector('.popup__text-click');
+
 const surname = popupEdit.querySelector('.popup__input_type_name');
 const hobby = popupEdit.querySelector('.popup__input_type_hobby');
-surname.value = profileInfo.textContent;
-hobby.value = profileSubtitle.textContent;
+
 
 function openPopup(item) {
   item.classList.add('popup_opened');
@@ -33,8 +35,8 @@ function createCard(cardObj)
   const postText = postElement.querySelector('.post__text');
   const postImgHeart = postElement.querySelector('.post__img-heart');
   const postTrash = postElement.querySelector('.post__trash');
-  const popupImgClick = popupImg.querySelector('.popup__img-click');
-  const popupTextClick = popupImg.querySelector('.popup__text-click');
+  // const popupImgClick = popupImg.querySelector('.popup__img-click');
+  // const popupTextClick = popupImg.querySelector('.popup__text-click');
 
   postImg.src = cardObj.link;
   postImg.alt = cardObj.name;
@@ -52,7 +54,7 @@ function createCard(cardObj)
     popupImgClick.src = cardObj.link;
     popupImgClick.alt = cardObj.name;
     popupTextClick.textContent = cardObj.name;
-    popupImg.classList.add('popup_opened');
+    openPopup(popupImg);
   });
   return postElement;
 } 
@@ -65,6 +67,8 @@ initialCards.forEach (function (item, index) {
 })
 
 profileEdit.addEventListener('click', function () {
+  surname.value = profileInfo.textContent;
+  hobby.value = profileSubtitle.textContent;
   openPopup(popupEdit);
 });
 
