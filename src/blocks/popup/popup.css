@@ -4,6 +4,7 @@
   align-items: center;
   flex-direction: column;
   position: fixed;
+  /* inset: 0; */
   left: 0;
   top: 0;
   right: 0;
