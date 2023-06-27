@@ -1,8 +1,6 @@
-import { initialCards } from './cards.js';
 export const popupEdit = document.querySelector('#popup-edit');
 export const popupNew = document.querySelector('#popup-post');
 export const popupImg = document.querySelector('#popup-img');
-
 export const popupForm = popupEdit.querySelector('.popup__form');
 export const popupFormNewCard = popupNew.querySelector('.popup__form');
 export const profile = document.querySelector('.profile');

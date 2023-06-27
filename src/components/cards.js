@@ -56,9 +56,4 @@ export function createCard(cardObj)
     openPopup(popupImg);
   });
   return postElement;
-} 
-
-initialCards.forEach (function (item, index) {
-  const newPost = createCard(item);
-  groupList.append(newPost);
-})
+};

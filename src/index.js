@@ -5,14 +5,7 @@
  import { popupEdit, popupForm, popupFormNewCard, popupNew, groupList, profileButton, popupCloseAll, profileEdit, hobby, surname, profileInfo, profileSubtitle } from './components/utils.js';
  import { createCard } from './components/cards.js';
  import { openPopup, closePopup } from './components/modal.js';
- enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-}); 
+ import { initialCards } from './components/cards.js';
 
 popupForm.addEventListener('submit', function (evt) {
   evt.preventDefault();
@@ -30,20 +23,15 @@ popupFormNewCard.addEventListener('submit', function (evt) {
   groupList.prepend(newCard);
   typePost.value = '';
   typeLink.value = '';
+  const submitButtonSelector = popupFormNewCard.querySelector('.popup__button');
+  submitButtonSelector.setAttribute('disabled', true);
+  submitButtonSelector.classList.add('popup__button_disabled');
+  console.log(submitButtonSelector);
   closePopup(popupNew); 
 });
 
 profileButton.addEventListener('click', function () {
   openPopup(popupNew);
-});
-
-window.addEventListener('click', function (evt) {
-  const target = evt.target;
-
-  if (!target.closest('.popup__container') && target.closest('.popup'))
-  {
-    closePopup(target.closest('.popup'));
-  }
 });
 
 popupForm.addEventListener('submit', function (evt) {
@@ -62,9 +50,23 @@ popupCloseAll.forEach(function (button) {
 profileEdit.addEventListener('click', function (evt) {
   surname.value = profileInfo.textContent;
   hobby.value = profileSubtitle.textContent;
+  const submitButton = popupForm.querySelector('.popup__button');
+  submitButton.removeAttribute('disabled', true);
+  submitButton.classList.remove('popup__button_disabled');
   openPopup(popupEdit);
 });
 
+initialCards.forEach (function (item, index) {
+  const newPost = createCard(item);
+  groupList.append(newPost);
+});
 
-surname.value = profileInfo.textContent;
-hobby.value = profileSubtitle.textContent;
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  inputErrorClassActive: 'popup__input-error_active',
+  errorClass: 'popup__error_visible',
+});

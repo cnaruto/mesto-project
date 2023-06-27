@@ -1,14 +1,14 @@
-const showInputError = (formSelector, inputSelector, errorMessage) => {
+const showInputError = (formSelector, inputSelector, errorMessage, inputErrorClass, inputErrorClassActive) => {
   const errorElement = formSelector.querySelector(`.${inputSelector.id}-error`);
-  inputSelector.classList.add('popup__input_type_error');
+  inputSelector.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_active');
+  errorElement.classList.add(inputErrorClassActive);
 };
 
-const hideInputError = (formSelector, inputSelector) => {
+const hideInputError = (formSelector, inputSelector, inputErrorClass, inputErrorClassActive) => {
   const errorElement = formSelector.querySelector(`.${inputSelector.id}-error`);
-  inputSelector.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('popup__input-error_active');
+  inputSelector.classList.remove(inputErrorClass);
+  errorElement.classList.remove(inputErrorClassActive);
   errorElement.textContent = '';
 };
 
@@ -23,11 +23,11 @@ const checkInputValidity = (formSelector, inputSelector, validObj) => {
   }
   if (!inputSelector.validity.valid) 
   {
-    showInputError(formSelector, inputSelector, inputSelector.validationMessage);
+    showInputError(formSelector, inputSelector, inputSelector.validationMessage, validObj.inputErrorClass, validObj.inputErrorClassActive);
   }
   else 
   {
-    hideInputError(formSelector, inputSelector);
+    hideInputError(formSelector, inputSelector, validObj.inputErrorClass, validObj.inputErrorClassActive);
   }
 }
 
@@ -40,10 +40,12 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, submitButtonSelector, inactiveButtonClass) => {
   if (hasInvalidInput(inputList))
   {
+    submitButtonSelector.setAttribute('disabled', true);
     submitButtonSelector.classList.add(inactiveButtonClass);
   }
   else
   {
+    submitButtonSelector.removeAttribute('disabled', true);
     submitButtonSelector.classList.remove(inactiveButtonClass);
   }
 };
