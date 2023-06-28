@@ -1,3 +1,5 @@
+import { toggleButtonState } from "./validate";
+
 export const popupEdit = document.querySelector('#popup-edit');
 export const popupNew = document.querySelector('#popup-post');
 export const popupImg = document.querySelector('#popup-img');
@@ -15,3 +17,10 @@ export const popupImgClick = popupImg.querySelector('.popup__img-click');
 export const popupTextClick = popupImg.querySelector('.popup__text-click');
 export const surname = popupEdit.querySelector('.popup__input_type_name');
 export const hobby = popupEdit.querySelector('.popup__input_type_hobby');
+
+export function submitButton (popup)
+{
+	const inputList = Array.from(popup.querySelectorAll('.popup__input'));
+	const submitButton = popup.querySelector('.popup__button');
+	toggleButtonState(inputList, submitButton, 'popup__button_disabled');
+}

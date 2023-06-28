@@ -2,10 +2,37 @@
  import './components/utils.js';
  import './pages/index.css';
  import { enableValidation } from './components/validate.js';
- import { popupEdit, popupForm, popupFormNewCard, popupNew, groupList, profileButton, popupCloseAll, profileEdit, hobby, surname, profileInfo, profileSubtitle } from './components/utils.js';
+ import { popupEdit, popupForm, popupFormNewCard, popupNew, groupList, profileButton, popupCloseAll, profileEdit, hobby, surname, profileInfo, profileSubtitle,  submitButton} from './components/utils.js';
  import { createCard } from './components/cards.js';
  import { openPopup, closePopup } from './components/modal.js';
- import { initialCards } from './components/cards.js';
+
+
+ const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+]; 
 
 popupForm.addEventListener('submit', function (evt) {
   evt.preventDefault();
@@ -23,10 +50,7 @@ popupFormNewCard.addEventListener('submit', function (evt) {
   groupList.prepend(newCard);
   typePost.value = '';
   typeLink.value = '';
-  const submitButtonSelector = popupFormNewCard.querySelector('.popup__button');
-  submitButtonSelector.setAttribute('disabled', true);
-  submitButtonSelector.classList.add('popup__button_disabled');
-  console.log(submitButtonSelector);
+  submitButton(popupFormNewCard);
   closePopup(popupNew); 
 });
 
@@ -50,9 +74,7 @@ popupCloseAll.forEach(function (button) {
 profileEdit.addEventListener('click', function (evt) {
   surname.value = profileInfo.textContent;
   hobby.value = profileSubtitle.textContent;
-  const submitButton = popupForm.querySelector('.popup__button');
-  submitButton.removeAttribute('disabled', true);
-  submitButton.classList.remove('popup__button_disabled');
+  submitButton(popupForm);
   openPopup(popupEdit);
 });
 

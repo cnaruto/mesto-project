@@ -31,13 +31,13 @@ const checkInputValidity = (formSelector, inputSelector, validObj) => {
   }
 }
 
-const hasInvalidInput = (inputList) => {
+export const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 };
 
-const toggleButtonState = (inputList, submitButtonSelector, inactiveButtonClass) => {
+export const toggleButtonState = (inputList, submitButtonSelector, inactiveButtonClass) => {
   if (hasInvalidInput(inputList))
   {
     submitButtonSelector.setAttribute('disabled', true);
