@@ -2,56 +2,52 @@
  import './components/utils.js';
  import './pages/index.css';
  import { enableValidation } from './components/validate.js';
- import { popupEdit, popupForm, popupFormNewCard, popupNew, groupList, profileButton, popupCloseAll, profileEdit, hobby, surname, profileInfo, profileSubtitle,  submitButton} from './components/utils.js';
+ import { postTemplate, popupEdit, popupForm, popupAvatar, popupFormNewCard, popupNew, groupList, profileButton, popupCloseAll, profileEdit, hobby, surname, profileInfo, profileSubtitle,  disableSubmitButton, profileWrapper, renderLoading} from './components/utils.js';
  import { createCard } from './components/cards.js';
  import { openPopup, closePopup } from './components/modal.js';
-
-
- const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
+ import { getInitialCards, getInitialProfile, patchInfoProfile, postNewCards, patchImgAvatar } from './components/api.js';
 
 popupForm.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  profileInfo.textContent = surname.value;
-  profileSubtitle.textContent = hobby.value;
-  closePopup(popupEdit);
+  renderLoading(true, popupForm);
+  patchInfoProfile({
+    name: surname.value, 
+    about: hobby.value})
+    .then((res) => {
+      console.log(res);
+      profileInfo.textContent = surname.value;
+      profileSubtitle.textContent = hobby.value;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      renderLoading(false, popupForm);
+      closePopup(popupEdit);
+    })
 });
 
 popupFormNewCard.addEventListener('submit', function (evt) {
   evt.preventDefault();
+  renderLoading(true, popupFormNewCard);
   const typePost = popupNew.querySelector('.popup__input_type_post');
   const typeLink = popupNew.querySelector('.popup__input_type_link');
   const cardObj = {name: typePost.value, link: typeLink.value};
-  const newCard = createCard(cardObj);
-  groupList.prepend(newCard);
-  typePost.value = '';
-  typeLink.value = '';
-  submitButton(popupFormNewCard);
-  closePopup(popupNew); 
+  postNewCards(cardObj)
+    .then((res) => {
+      const newCard = createCard(res);
+      groupList.prepend(newCard);
+      typePost.value = '';
+      typeLink.value = '';
+      disableSubmitButton(popupFormNewCard);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      renderLoading(false, popupFormNewCard);
+      closePopup(popupNew); 
+    })
 });
 
 profileButton.addEventListener('click', function () {
@@ -60,6 +56,7 @@ profileButton.addEventListener('click', function () {
 
 popupForm.addEventListener('submit', function (evt) {
   evt.preventDefault();
+  
   profileInfo.textContent = surname.value;
   profileSubtitle.textContent = hobby.value;
   closePopup(popupEdit);
@@ -74,14 +71,41 @@ popupCloseAll.forEach(function (button) {
 profileEdit.addEventListener('click', function (evt) {
   surname.value = profileInfo.textContent;
   hobby.value = profileSubtitle.textContent;
-  submitButton(popupForm);
+  disableSubmitButton(popupForm);
   openPopup(popupEdit);
 });
 
-initialCards.forEach (function (item, index) {
-  const newPost = createCard(item);
-  groupList.append(newPost);
-});
+function allPromise(getInitialProfile, getInitialCards) {
+  const firstPromise = getInitialProfile();
+  const secondPromise = getInitialCards();
+  const promises = [firstPromise, secondPromise]
+
+  Promise.all(promises)
+    .then((res) => {
+      console.log(res);
+      const idProfile = res[0]._id;
+      const cards = res[1];
+      
+      profileInfo.textContent = res[0].name;
+      profileSubtitle.textContent = res[0].about;
+      profileWrapper.querySelector('.profile__avatar').src = res[0].avatar;
+      cards.forEach((item) => {
+        const newPost = createCard(item);
+        newPost.dataset.id = item._id;
+        groupList.append(newPost);
+        if(item.owner._id !== idProfile) {
+          const trash = newPost.querySelector('.post__trash');
+          trash.remove();
+        }
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    
+}
+
+allPromise(getInitialProfile, getInitialCards);
 
 enableValidation({
   formSelector: '.popup__form',
@@ -91,4 +115,27 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   inputErrorClassActive: 'popup__input-error_active',
   errorClass: 'popup__error_visible',
+});
+
+profileWrapper.addEventListener('click', function () {
+  openPopup(popupAvatar)
+});
+
+popupAvatar.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  renderLoading(true, popupAvatar);
+  const typeLink = popupAvatar.querySelector('.popup__input_type_link');
+  profileWrapper.querySelector('.profile__avatar').src = typeLink.value;
+  console.log(typeLink.value)
+  patchImgAvatar(typeLink.value)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      renderLoading(false, popupAvatar)
+      closePopup(popupAvatar);
+    })
 });

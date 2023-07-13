@@ -1,7 +1,13 @@
+.profile__wrapper {
+  position: relative;
+  max-width: 122px;
+}
+
 .profile__avatar {
+  display: block;
   margin: 0 auto 0 auto;
-  width: 100%;
-  max-width: 120px;
+  aspect-ratio: 1 / 1;
+  max-width: 100%; /* Максимальная ширина картинки */
   border-radius: 50%;
   border: 1px solid transparent;
 }
@@ -10,4 +16,21 @@
   .profile__avatar {
     margin: 0;
   }
+}
+
+.profile__icon-container{
+  display: none;
+}
+
+.profile__wrapper:hover .profile__icon-container {
+display: flex;
+justify-content: center;
+align-items: center;
+position: absolute;
+top:0;
+right:0;
+left: 0;
+bottom: 0;
+background: rgba(0,0,0,0.6);
+cursor: pointer;
 }

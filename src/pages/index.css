@@ -28,6 +28,8 @@
 @import url(../blocks/post/__img-heart/post__img-heart.css);
 @import url(../blocks/post/__img/post__img.css);
 @import url(../blocks/post/__text/post__text.css);
+@import url(../blocks/post/__like-button/post__like-button.css);
+@import url(../blocks/post/__like/post__like.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__button/popup__button.css);

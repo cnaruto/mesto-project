@@ -3,6 +3,8 @@ import { toggleButtonState } from "./validate";
 export const popupEdit = document.querySelector('#popup-edit');
 export const popupNew = document.querySelector('#popup-post');
 export const popupImg = document.querySelector('#popup-img');
+export const popupAvatar = document.querySelector('#popup-avatar');
+
 export const popupForm = popupEdit.querySelector('.popup__form');
 export const popupFormNewCard = popupNew.querySelector('.popup__form');
 export const profile = document.querySelector('.profile');
@@ -17,10 +19,22 @@ export const popupImgClick = popupImg.querySelector('.popup__img-click');
 export const popupTextClick = popupImg.querySelector('.popup__text-click');
 export const surname = popupEdit.querySelector('.popup__input_type_name');
 export const hobby = popupEdit.querySelector('.popup__input_type_hobby');
+export const profileWrapper = document.querySelector('.profile__wrapper');
 
-export function submitButton (popup)
+export function disableSubmitButton (popup)
 {
 	const inputList = Array.from(popup.querySelectorAll('.popup__input'));
 	const submitButton = popup.querySelector('.popup__button');
 	toggleButtonState(inputList, submitButton, 'popup__button_disabled');
+}
+
+export function renderLoading(isLoading, item) {
+	if (isLoading)
+	{
+		item.querySelector('.popup__button').textContent = 'Сохранение...'
+	}
+	else
+	{
+		item.querySelector('.popup__button').textContent = 'Сохранить'
+	}
 }
