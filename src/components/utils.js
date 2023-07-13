@@ -21,6 +21,11 @@ export const surname = popupEdit.querySelector('.popup__input_type_name');
 export const hobby = popupEdit.querySelector('.popup__input_type_hobby');
 export const profileWrapper = document.querySelector('.profile__wrapper');
 
+
+export const typePost = popupNew.querySelector('.popup__input_type_post');
+export const typeLink = popupNew.querySelector('.popup__input_type_link');
+export const typeLinkAvatar = popupAvatar.querySelector('.popup__input_type_link');
+export const profileAvatar = profileWrapper.querySelector('.profile__avatar');
 export function disableSubmitButton (popup)
 {
 	const inputList = Array.from(popup.querySelectorAll('.popup__input'));

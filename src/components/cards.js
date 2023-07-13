@@ -31,6 +31,7 @@ export function createCard(cardObj)
         deleteImgHeart(cardObj._id)
         .then((res) => {
           postLikes.textContent = res.likes.length;
+          evtHeart.classList.remove('post__img-heart_active');
           console.log(res);
         })
         .catch((err) => {
@@ -42,21 +43,23 @@ export function createCard(cardObj)
       putImgHeart(cardObj._id)
       .then((res) => {
         postLikes.textContent = res.likes.length;
+        evtHeart.classList.add('post__img-heart_active');
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
       })
     }
-    evtHeart.classList.toggle('post__img-heart_active');
   });
   
   postTrash.addEventListener('click', function() {
     deleteCard(cardObj._id)
-    .catch((err) => {
-      console.log(err);
-    })
-    postElement.remove();
+      .then((res) => {
+        postElement.remove();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   });
 
   postImg.addEventListener('click', function () {

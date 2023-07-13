@@ -2,7 +2,7 @@
  import './components/utils.js';
  import './pages/index.css';
  import { enableValidation } from './components/validate.js';
- import { postTemplate, popupEdit, popupForm, popupAvatar, popupFormNewCard, popupNew, groupList, profileButton, popupCloseAll, profileEdit, hobby, surname, profileInfo, profileSubtitle,  disableSubmitButton, profileWrapper, renderLoading} from './components/utils.js';
+ import { postTemplate, popupEdit, popupForm, popupAvatar, popupFormNewCard, popupNew, groupList, profileButton, popupCloseAll, profileEdit, hobby, surname, profileInfo, profileSubtitle,  disableSubmitButton, profileWrapper, renderLoading, typePost, typeLink, typeLinkAvatar, profileAvatar} from './components/utils.js';
  import { createCard } from './components/cards.js';
  import { openPopup, closePopup } from './components/modal.js';
  import { getInitialCards, getInitialProfile, patchInfoProfile, postNewCards, patchImgAvatar } from './components/api.js';
@@ -15,23 +15,21 @@ popupForm.addEventListener('submit', function (evt) {
     about: hobby.value})
     .then((res) => {
       console.log(res);
-      profileInfo.textContent = surname.value;
-      profileSubtitle.textContent = hobby.value;
+      profileInfo.textContent = res.name;
+      profileSubtitle.textContent = res.about;
+      closePopup(popupEdit);
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
       renderLoading(false, popupForm);
-      closePopup(popupEdit);
     })
 });
 
 popupFormNewCard.addEventListener('submit', function (evt) {
   evt.preventDefault();
   renderLoading(true, popupFormNewCard);
-  const typePost = popupNew.querySelector('.popup__input_type_post');
-  const typeLink = popupNew.querySelector('.popup__input_type_link');
   const cardObj = {name: typePost.value, link: typeLink.value};
   postNewCards(cardObj)
     .then((res) => {
@@ -40,13 +38,14 @@ popupFormNewCard.addEventListener('submit', function (evt) {
       typePost.value = '';
       typeLink.value = '';
       disableSubmitButton(popupFormNewCard);
+      closePopup(popupNew); 
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
       renderLoading(false, popupFormNewCard);
-      closePopup(popupNew); 
+      
     })
 });
 
@@ -124,18 +123,17 @@ profileWrapper.addEventListener('click', function () {
 popupAvatar.addEventListener('submit', function (evt) {
   evt.preventDefault();
   renderLoading(true, popupAvatar);
-  const typeLink = popupAvatar.querySelector('.popup__input_type_link');
-  profileWrapper.querySelector('.profile__avatar').src = typeLink.value;
-  console.log(typeLink.value)
-  patchImgAvatar(typeLink.value)
+  console.log(typeLinkAvatar.value)
+  patchImgAvatar(typeLinkAvatar.value)
     .then((res) => {
       console.log(res);
+      profileAvatar.src = typeLinkAvatar.value;
+      closePopup(popupAvatar);
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false, popupAvatar)
-      closePopup(popupAvatar);
+      renderLoading(false, popupAvatar);
     })
 });
