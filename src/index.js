@@ -7,6 +7,8 @@
  import { openPopup, closePopup } from './components/modal.js';
  import { getInitialCards, getInitialProfile, patchInfoProfile, postNewCards, patchImgAvatar } from './components/api.js';
 
+//coment-test
+
 popupForm.addEventListener('submit', function (evt) {
   evt.preventDefault();
   renderLoading(true, popupForm);
